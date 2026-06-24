@@ -1,0 +1,34 @@
+"""Given an integer array nums, return the third distinct maximum number in this array. If the third maximum does not exist, return the maximum number.
+
+ 
+
+Example 1:
+
+Input: nums = [3,2,1]
+Output: 1
+Explanation:
+The first distinct maximum is 3.
+The second distinct maximum is 2.
+The third distinct maximum is 1."""
+class Solution:
+    def thirdMax(self, nums):
+        first = second = third = None
+
+        for num in nums:
+            if num == first or num == second or num == third:
+                continue
+            if first is None or num > first:
+                third = second
+                second = first
+                first = num
+            elif second is None or num > second:
+                third = second
+                second = num
+            elif third is None or num > third:
+                third = num
+        if third is None:
+            return first
+        return third
+obj=Solution()
+res=obj.thirdMax()
+print(res)
